@@ -32,5 +32,5 @@ void main() async {
     await completer.future;
     expect(testCount > 0, true);
     expect(testErrors, isEmpty);
-  }, timeout: Timeout.none);
+  }, timeout: Timeout.none,);
 }

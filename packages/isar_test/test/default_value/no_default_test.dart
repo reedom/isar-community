@@ -176,7 +176,7 @@ void main() {
 
       final isar2 = await openTempIsar([
         NoDefaultListModelSchema,
-      ], name: isarName);
+      ], name: isarName,);
       final obj = (await isar2.noDefaultListModels.tGet(0))!;
       expect(obj.boolValue, isEmpty);
       expect(obj.byteValue, isEmpty);
@@ -199,7 +199,7 @@ void main() {
 
       final isar2 = await openTempIsar([
         NoDefaultListModelSchema,
-      ], name: isarName);
+      ], name: isarName,);
       expect(
         await isar2.noDefaultListModels
             .where()

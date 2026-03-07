@@ -76,7 +76,7 @@ Matcher get throwsAssertionError {
   assert(() {
     matcher = throwsA(isA<AssertionError>());
     return true;
-  }(), 'only in debug mode');
+  }(), 'only in debug mode',);
   return matcher;
 }
 

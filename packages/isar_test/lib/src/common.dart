@@ -79,7 +79,7 @@ void _isarTest(
           testErrors.add('$testName: $e');
           rethrow;
         }
-      }, zoneValues: {#syncTest: syncTest});
+      }, zoneValues: {#syncTest: syncTest},);
     },
     timeout: timeout ?? const Timeout(Duration(minutes: 10)),
     skip: skip,

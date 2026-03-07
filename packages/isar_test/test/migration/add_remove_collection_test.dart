@@ -52,7 +52,7 @@ void main() {
     final isar2 = await openTempIsar([
       Model1Schema,
       Model2Schema,
-    ], name: isar1.name);
+    ], name: isar1.name,);
     await isar2.model1s.verify([obj1A, obj1B]);
     await isar2.model2s.verify([]);
     final obj2 = Model2(null, 'col2_a');
@@ -92,7 +92,7 @@ void main() {
     final isar3 = await openTempIsar([
       Model1Schema,
       Model2Schema,
-    ], name: isar1.name);
+    ], name: isar1.name,);
     await isar3.model1s.verify([obj1A, obj1B]);
     await isar3.model1s.verifyLink('link', [obj1A.id!], [obj1B.id!]);
     await isar3.model2s.verify([]);
