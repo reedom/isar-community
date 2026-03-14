@@ -194,7 +194,7 @@ class SelectedInstanceButton extends StatelessWidget {
                 ),
                 const Spacer(),
                 if (hasMultiple)
-                  Column(
+                  const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       FaIcon(FontAwesomeIcons.chevronUp, size: 12),
