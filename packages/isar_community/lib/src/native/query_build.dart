@@ -930,7 +930,6 @@ void _buildConditionStringOp({
       throw IsarError('String operation value must not be null');
     }
 
-    // ignore: non_exhaustive_switch_statement
     switch (conditionType) {
       case FilterConditionType.startsWith:
         nCall(
@@ -979,6 +978,16 @@ void _buildConditionStringOp({
             propertyId!,
           ),
         );
+        break;
+      case FilterConditionType.equalTo:
+      case FilterConditionType.greaterThan:
+      case FilterConditionType.lessThan:
+      case FilterConditionType.between:
+      case FilterConditionType.isNull:
+      case FilterConditionType.isNotNull:
+      case FilterConditionType.elementIsNull:
+      case FilterConditionType.elementIsNotNull:
+      case FilterConditionType.listLength:
         break;
     }
   } else {
