@@ -85,7 +85,7 @@ extension PropertyElementX on PropertyInducingElement {
   List<Index> get indexAnnotations {
     var annotations = _indexChecker.annotationsOfExact(this);
 
-    if (isSynthetic && getter != null) {
+    if (this != nonSynthetic && getter != null) {
       annotations = [
         ...annotations,
         ..._indexChecker.annotationsOfExact(getter!),
