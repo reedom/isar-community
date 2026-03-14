@@ -9,7 +9,7 @@ funding:
   - https://github.com/sponsors/vicenterusso/
 
 environment:
-  sdk: ">=2.17.0 <4.0.0"
+  sdk: ">=3.5.0 <4.0.0"
   flutter: ">=3.0.0"
 
 platforms:

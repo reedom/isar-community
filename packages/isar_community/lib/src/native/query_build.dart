@@ -930,7 +930,7 @@ void _buildConditionStringOp({
       throw IsarError('String operation value must not be null');
     }
 
-    // ignore: missing_enum_constant_in_switch
+    // ignore: non_exhaustive_switch_statement
     switch (conditionType) {
       case FilterConditionType.startsWith:
         nCall(

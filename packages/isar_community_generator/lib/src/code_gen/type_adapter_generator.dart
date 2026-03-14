@@ -77,7 +77,6 @@ String generateEstimateSerialize(ObjectInfo object) {
           value,
           (value) => '3 + $value$enumValue.length * 3',
         );
-        break;
 
       case IsarType.stringList:
         final enumValue = property.isEnum ? '.${property.enumProperty}' : '';
@@ -87,14 +86,12 @@ String generateEstimateSerialize(ObjectInfo object) {
           value,
           'value$enumValue.length * 3',
         );
-        break;
 
       case IsarType.object:
         code += _prepareSerialize(property.nullable, value, (value) {
           return '3 + ${property.targetSchema}.estimateSize($value, '
               'allOffsets[${property.scalarDartType}]!, allOffsets)';
         });
-        break;
 
       case IsarType.objectList:
         code += _prepareSerializeList(
@@ -104,7 +101,6 @@ String generateEstimateSerialize(ObjectInfo object) {
           '${property.targetSchema}.estimateSize(value, offsets, allOffsets)',
           'final offsets = allOffsets[${property.scalarDartType}]!;',
         );
-        break;
 
       case IsarType.byteList:
       case IsarType.boolList:
@@ -113,7 +109,6 @@ String generateEstimateSerialize(ObjectInfo object) {
           value,
           (value) => '3 + $value.length',
         );
-        break;
       case IsarType.intList:
       case IsarType.floatList:
         code += _prepareSerialize(
@@ -121,7 +116,6 @@ String generateEstimateSerialize(ObjectInfo object) {
           value,
           (value) => '3 + $value.length * 4',
         );
-        break;
       case IsarType.longList:
       case IsarType.doubleList:
       case IsarType.dateTimeList:
@@ -130,7 +124,6 @@ String generateEstimateSerialize(ObjectInfo object) {
           value,
           (value) => '3 + $value.length * 8',
         );
-        break;
 
       // ignore: no_default_cases - default case needed for exhaustive switch
       default:
@@ -167,28 +160,20 @@ String generateSerialize(ObjectInfo object) {
     switch (property.isarType) {
       case IsarType.bool:
         code += 'writer.writeBool(offsets[$i], $value);';
-        break;
       case IsarType.byte:
         code += 'writer.writeByte(offsets[$i], $value);';
-        break;
       case IsarType.int:
         code += 'writer.writeInt(offsets[$i], $value);';
-        break;
       case IsarType.float:
         code += 'writer.writeFloat(offsets[$i], $value);';
-        break;
       case IsarType.long:
         code += 'writer.writeLong(offsets[$i], $value);';
-        break;
       case IsarType.double:
         code += 'writer.writeDouble(offsets[$i], $value);';
-        break;
       case IsarType.dateTime:
         code += 'writer.writeDateTime(offsets[$i], $value);';
-        break;
       case IsarType.string:
         code += 'writer.writeString(offsets[$i], $value);';
-        break;
       case IsarType.object:
         code += '''
           writer.writeObject<${property.typeClassName}>(
@@ -197,31 +182,22 @@ String generateSerialize(ObjectInfo object) {
             ${property.targetSchema}.serialize,
             $value,
           );''';
-        break;
       case IsarType.byteList:
         code += 'writer.writeByteList(offsets[$i], $value);';
-        break;
       case IsarType.boolList:
         code += 'writer.writeBoolList(offsets[$i], $value);';
-        break;
       case IsarType.intList:
         code += 'writer.writeIntList(offsets[$i], $value);';
-        break;
       case IsarType.longList:
         code += 'writer.writeLongList(offsets[$i], $value);';
-        break;
       case IsarType.floatList:
         code += 'writer.writeFloatList(offsets[$i], $value);';
-        break;
       case IsarType.doubleList:
         code += 'writer.writeDoubleList(offsets[$i], $value);';
-        break;
       case IsarType.dateTimeList:
         code += 'writer.writeDateTimeList(offsets[$i], $value);';
-        break;
       case IsarType.stringList:
         code += 'writer.writeStringList(offsets[$i], $value);';
-        break;
       case IsarType.objectList:
         code += '''
           writer.writeObjectList<${property.typeClassName}>(
@@ -230,7 +206,6 @@ String generateSerialize(ObjectInfo object) {
             ${property.targetSchema}.serialize,
             $value,
           );''';
-        break;
     }
   }
 
