@@ -1,0 +1,6 @@
+
+# release/3.3.2-spm: native binaries are vendored so git consumers get them
+# (git dependencies never run tool/download_binaries.sh).
+!ios/isar.xcframework/
+!ios/isar.xcframework/**/*.a
+!android/src/main/jniLibs/**/*.so
