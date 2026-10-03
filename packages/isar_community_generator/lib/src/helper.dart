@@ -1,4 +1,3 @@
-import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart' hide Name;
 import 'package:analyzer/dart/element/type.dart';
 import 'package:dartx/dartx.dart';
@@ -16,9 +15,7 @@ const TypeChecker _backlinkChecker = TypeChecker.typeNamed(Backlink);
 extension ClassElementX on ClassElement {
   bool get hasZeroArgsConstructor {
     return constructors.any(
-      (c) =>
-          c.isPublic &&
-          !c.formalParameters.any((FormalParameterElement p) => !p.isOptional),
+      (c) => c.isPublic && !c.formalParameters.any((p) => !p.isOptional),
     );
   }
 
@@ -27,18 +24,19 @@ extension ClassElementX on ClassElement {
         collectionAnnotation?.ignore ?? embeddedAnnotation!.ignore;
     final accessors = [...setters, ...getters];
     return [
-      ...accessors.mapNotNull((e) => e.variable),
-      if (collectionAnnotation?.inheritance ?? embeddedAnnotation!.inheritance)
-        for (final InterfaceType supertype in allSupertypes) ...[
-          if (!supertype.isDartCoreObject)
-            ...[
-              ...supertype.getters,
-              ...supertype.setters,
-            ].mapNotNull((e) => e.variable),
-        ],
-    ]
+          ...accessors.mapNotNull((e) => e.variable),
+          if (collectionAnnotation?.inheritance ??
+              embeddedAnnotation!.inheritance)
+            for (final InterfaceType supertype in allSupertypes) ...[
+              if (!supertype.isDartCoreObject)
+                ...[
+                  ...supertype.getters,
+                  ...supertype.setters,
+                ].mapNotNull((e) => e.variable),
+            ],
+        ]
         .where(
-          (PropertyInducingElement e) =>
+          (e) =>
               e.isPublic &&
               !e.isStatic &&
               !_ignoreChecker.hasAnnotationOf(e.nonSynthetic) &&
@@ -85,14 +83,14 @@ extension PropertyElementX on PropertyInducingElement {
   List<Index> get indexAnnotations {
     var annotations = _indexChecker.annotationsOfExact(this);
 
-    if (this != nonSynthetic && getter != null) {
+    if (nonSynthetic != this && getter != null) {
       annotations = [
         ...annotations,
         ..._indexChecker.annotationsOfExact(getter!),
       ];
     }
 
-    return annotations.map((DartObject ann) {
+    return annotations.map((ann) {
       final rawComposite = ann.getField('composite')!.toListValue();
       final composite = <CompositeIndex>[];
       if (rawComposite != null) {
@@ -100,8 +98,9 @@ extension PropertyElementX on PropertyInducingElement {
           final indexTypeField = c.getField('type')!;
           IndexType? indexType;
           if (!indexTypeField.isNull) {
-            final indexTypeIndex =
-                indexTypeField.getField('index')!.toIntValue()!;
+            final indexTypeIndex = indexTypeField
+                .getField('index')!
+                .toIntValue()!;
             indexType = IndexType.values[indexTypeIndex];
           }
           composite.add(

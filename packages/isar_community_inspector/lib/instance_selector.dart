@@ -57,6 +57,8 @@ class _InstanceSelectorState extends State<InstanceSelector>
               color: theme.colorScheme.secondaryContainer,
               child: SizeTransition(
                 sizeFactor: _animation,
+                // `alignment` exists only on Flutter 3.41+.
+                // ignore: deprecated_member_use
                 axisAlignment: -1,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

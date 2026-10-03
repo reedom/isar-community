@@ -228,7 +228,9 @@ void main() {
       await qEqualSet(
         isar.modelAs.filter().bLinks(
               (q) => q.cLinks(
-                (q) => q.aLinks((q) => q.nameEqualTo('non existing')),
+                (q) => q.aLinks(
+                  (q) => q.nameEqualTo('non existing'),
+                ),
               ),
             ),
         [],
@@ -288,7 +290,9 @@ void main() {
       await qEqualSet(
         isar.modelBs.filter().cLinks(
               (q) => q.aLinks(
-                (q) => q.bLinks((q) => q.nameEqualTo('non existing')),
+                (q) => q.bLinks(
+                  (q) => q.nameEqualTo('non existing'),
+                ),
               ),
             ),
         [],
@@ -348,7 +352,9 @@ void main() {
       await qEqualSet(
         isar.modelCs.filter().aLinks(
               (q) => q.bLinks(
-                (q) => q.cLinks((q) => q.nameEqualTo('non existing')),
+                (q) => q.cLinks(
+                  (q) => q.nameEqualTo('non existing'),
+                ),
               ),
             ),
         [],

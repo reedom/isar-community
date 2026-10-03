@@ -1,10 +1,9 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, deprecated_member_use
 
 import 'dart:js_interop' hide JS;
 import 'dart:js_interop_unsafe';
 
 import 'package:isar_community/isar.dart';
-// ignore: deprecated_member_use
 import 'package:js/js.dart';
 import 'package:web/web.dart' as web;
 
