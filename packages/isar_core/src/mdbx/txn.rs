@@ -32,7 +32,8 @@ impl<'a> Drop for Txn<'a> {
     fn drop(&mut self) {
         if !self.txn.is_null() {
             unsafe {
-                ffi::mdbx_txn_abort(self.txn);
+                // mdbx_txn_abort is a header-only inline since libmdbx 0.14, so bindgen cannot see it.
+                ffi::mdbx_txn_abort_ex(self.txn, ptr::null_mut());
             }
             self.txn = ptr::null_mut();
         }

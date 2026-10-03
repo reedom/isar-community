@@ -31,7 +31,7 @@ impl Env {
                 max_dbs as u64,
             ))?;
 
-            let mut flags = ffi::MDBX_NOTLS | ffi::MDBX_COALESCE | ffi::MDBX_NOSUBDIR;
+            let mut flags = ffi::MDBX_NOSTICKYTHREADS | ffi::MDBX_NOSUBDIR;
             if relaxed_durability {
                 flags |= ffi::MDBX_NOMETASYNC;
             }
