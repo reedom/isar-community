@@ -17,6 +17,9 @@ void main() async {
     setUpAll(() async {
       if (!kIsWeb) {
         final dir = await getTemporaryDirectory();
+        // path_provider_foundation 2.6+ returns the Caches path without
+        // creating it, and Isar cannot open a missing directory.
+        await dir.create(recursive: true);
         testTempPath = dir.path;
       }
     });
